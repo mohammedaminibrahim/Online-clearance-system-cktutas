@@ -36,6 +36,11 @@
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
       </svg> Fees</a></li>
+
+      <li class="nav-item"><a class="nav-link" href="././view-fees.php">
+      <svg class="nav-icon">
+        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+      </svg>View Fees</a></li>
       
   <li class="nav-title">Components</li>
   <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">

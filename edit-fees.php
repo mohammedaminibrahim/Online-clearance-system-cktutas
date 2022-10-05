@@ -7,23 +7,26 @@
     require_once("./config.php");
     require_once("./auxiliaries.php");
 
-    if(isset($_POST['addfees'])){
+    if(isset($_POST['updatefees'])){
         $feesamount = sterilize($_POST['feesamount']);
         $studentdepartment = sterilize($_POST['studentdepartment']);
 
-        if(!empty($feesamount) && !empty($studentdepartment)){
-            $sqlInsertFees = "INSERT INTO fees(feesamount, department) 
-            VALUES(:feesamount, :studentdepartment)";
+        $createdat = date('y-m-d i:h:s');
+
+        if(!empty($feesamount)  && !empty($studentdepartment)){
+            $sqlInsertFees = "UPDATE fees SET feesamount = :feesamount, department = :studentdepartment";
             $statement = $conn->prepare($sqlInsertFees);
             $results = $statement->execute(
                 array(
                     ':feesamount' => $feesamount,
                     ':studentdepartment' => $studentdepartment
+                  
                 )
             );
 
             if($results){
-                $_SESSION['message'] = "Fees Added Successfully!";
+                header("location: view-fees.php");
+                $_SESSION['message'] = "Fees Added Successfully! {$createdat}";
                 $_SESSION['alert'] = "alert alert-primary";
             } else{
                 $_SESSION['message'] = "Sorry!! Something went wrong!";
@@ -36,6 +39,24 @@
     }
     
 
+    $id = $_GET['id'];
+    //select * from fees
+    $sqlSelectFees = "SELECT * FROM fees WHERE id = :id";
+    $statement = $conn->prepare($sqlSelectFees);
+    $results = $statement->execute([
+        ':id' => $id
+    ]);
+    $columns = $statement->fetchAll();
+
+    if($results){
+        foreach($columns as $column){
+            $feesamount = $column['feesamount'];
+            $department	= $column['department'];
+        }
+    } else{
+        $_SESSION['message'] = "Sorry!! Something went wrong!";
+        $_SESSION['alert'] = "alert alert-danger";
+    }
 
 ;?>
 
@@ -57,13 +78,13 @@
                         <form action="" method="POST" class="row g-3">
                           <div class="col-md-4">
                             <label class="form-label" for="validationServer01">Amount</label>
-                            <input name="feesamount" class="form-control is-valid" id="validationServer01" type="number" placeholder="Enter Department here" required="">
+                            <input name="feesamount" value="<?= $feesamount;?>" class="form-control is-valid" id="validationServer01" type="number" placeholder="Enter Department here" required="">
                             
                           </div>
-                          
+                
                           <div class="col-md-4">
                             <label class="form-label" for="validationServer04">Department</label>
-                            <select name="studentdepartment" class="form-select is-valid" id="validationServer04" aria-describedby="validationServer04Feedback" required="">
+                            <select  name="studentdepartment" class="form-select is-valid" id="validationServer04" aria-describedby="validationServer04Feedback" required="">
                             <option selected='' disabled='' value=''>Choose...</option>
                                 <?php
                                     $sqlSelectDepartment = "SELECT * FROM department";
@@ -98,7 +119,7 @@
                           </div>
                         
                           <div class="col-12">
-                            <button name="addfees" class="btn btn-primary" type="submit">Submit form</button>
+                            <button name="updatefees" class="btn btn-primary" type="submit">Update form</button>
                           </div>
                         </form>
                       </div>
