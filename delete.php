@@ -9,9 +9,9 @@ if(isset($id)){
     $results = $statement->execute();
 
     if($results){
+        header("location: view-students.php");
         $_SESSION['message'] = "Student Data Deleted Successfully!!";
         $_SESSION['alert'] = "alert alert-primary";
-        header("location: view-students.php");
     } else{
         $_SESSION['message'] = "Sorry!! Something went wrong!!";
         $_SESSION['alert'] = "alert alert-danger";
