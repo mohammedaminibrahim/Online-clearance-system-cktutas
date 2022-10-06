@@ -70,6 +70,11 @@
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
       </svg> Fees & History</a></li>
+
+      <li class="nav-item"><a class="nav-link" href="././logout.php">
+      <svg class="nav-icon">
+        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
+      </svg> Logout</a></li>
       
   
   
