@@ -61,22 +61,17 @@
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
       </svg> Fill Form</a></li>
-  <li class="nav-item"><a class="nav-link" href="././add-student.php">
+  <li class="nav-item"><a class="nav-link" href="././view-status.php">
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-      </svg> Student</a></li>
-
-   <li class="nav-item"><a class="nav-link" href="././add-officer.php">
-      <svg class="nav-icon">
-        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
-      </svg> Officer</a></li>
+      </svg> View Status</a></li>
 
       <li class="nav-item"><a class="nav-link" href="././student-fees.php">
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
       </svg> Fees & History</a></li>
       
-  <li class="nav-title">Components</li>
+  
   
 </ul>
 <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
