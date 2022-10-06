@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['email']) OR $_SESSION['email'] == 0){
+    if(!isset($_SESSION['studentid']) OR $_SESSION['studentid'] == 0){
         header("location: login.php");
     }
 

@@ -9,14 +9,14 @@ require_once("./auxiliaries.php");
 
 
 if(isset($_POST['submit'])){
-  $email = sterilize($_POST['email']);
+  $studentid = sterilize($_POST['studentid']);
   $password = sterilize($_POST['password']);
 
-if(empty($password) && empty($password)){
+if(empty($password) && empty($studentid)){
   $_SESSION['message'] = "All Fields are required...**";
   $_SESSION['alert'] = "alert alert-warning";
 } else {
-  $sqlSelectEmail = "SELECT * from users WHERE email = '$email'";
+  $sqlSelectEmail = "SELECT * from students WHERE studentid = '$studentid'";
   $statement = $conn->prepare($sqlSelectEmail);
   $results = $statement->execute();
   $rows = $statement->rowCount();
@@ -26,9 +26,8 @@ if(empty($password) && empty($password)){
       if($rows > 0){
           foreach($columns as $column){
             //verify password
-            if(password_verify($password, $column['password'])){
-              $_SESSION['fullname'] = $_POST['fullname'];
-              $_SESSION['email'] = $_POST['email'];
+            if($password == $column['password']){
+              $_SESSION['studentid'] = $_POST['studentid'];
               header("location: index.php");
               ob_end_flush();
             } else{
@@ -156,7 +155,7 @@ if(empty($password) && empty($password)){
               <!-- Form -->
               <div class="mb-4">
                 <label class="form-label" for="signupModalFormLoginEmail">Your email</label>
-                <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
+                <input type="text" class="form-control form-control-lg" name="studentid" id="signupModalFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
                 <span class="invalid-feedback">Please enter a valid email address.</span>
               </div>
               <!-- End Form -->

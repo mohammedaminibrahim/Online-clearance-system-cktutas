@@ -1,3 +1,31 @@
+<?php
+
+   
+    //get student details
+    require_once("../config.php");
+    $studentid = $_SESSION['studentid'];
+    $sqlStudentsInfo = "SELECT * FROM students WHERE studentid = :studentid";
+    $statement = $conn->prepare($sqlStudentsInfo);
+    $results = $statement->execute([
+      ':studentid' => $studentid
+    ]);
+    $columns = $statement->fetchAll();
+
+    if($results){
+      foreach($columns as $column){
+        $id = $column['id'];
+        $studentid = $column['studentid'];
+        $fullname = $column['studentfullname'];
+        $studentdepartment = $column['studentdepartment'];
+        $studentprogramme = $column['studentprogramme'];
+      }
+    } else{
+      $_SESSION['message'] = "Sorry!! Try Again Later!! Something went wrong";
+      $_SESSION['alert'] = "alert alert-danger";
+    }
+
+;?>
+
 <style>
   .avatar {
   vertical-align: middle;
@@ -16,20 +44,23 @@
   </svg>
 </div>
 <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-  <li class="nav-item"><a class="nav-link" href="index.html">
-      <svg class="nav-icon">
-        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-      </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
-  <li class="nav-title">ADD NEW <span class="badge badge-sm bg-success ms-auto">NEW</span></li>
+
+  <li class="nav-title"><?= $studentid;?> <span class="badge badge-sm bg-success ms-auto">NEW</span></li>
     <li class="nav-item">
     <div class="rounded-circle">
       <img src="../assets/img/avatars/1.jpg" style="margin-left: 60px;" class="avatar" alt="" srcset="">
     </div>
+    <div class="container">
+    <p style="margin-left: 30px;" class="text-light"><?= $fullname;?> </p>
+    <p style="margin-left: 30px;" class="text-light"> <?= $studentdepartment;?></p>
+
+    
+    </div>
     </li>
-  <li class="nav-item"><a class="nav-link" href="././add-department.php">
+  <li class="nav-item"><a class="nav-link" href="././request-form.php">
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-      </svg> Fees</a></li>
+      </svg> Fill Form</a></li>
   <li class="nav-item"><a class="nav-link" href="././add-student.php">
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
@@ -40,10 +71,10 @@
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
       </svg> Officer</a></li>
 
-      <li class="nav-item"><a class="nav-link" href="././view-students.php">
+      <li class="nav-item"><a class="nav-link" href="././student-fees.php">
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
-      </svg> View Student</a></li>
+      </svg> Fees & History</a></li>
       
   <li class="nav-title">Components</li>
   
