@@ -62,20 +62,20 @@ if(empty($password) && empty($studentid)){
     <div class="container-fluid">
       <nav class="navbar-nav-wrap">
         <!-- White Logo -->
-        <a class="navbar-brand d-none d-lg-flex" href="index-2.html" aria-label="Front">
-          <img class="navbar-brand-logo" src="assets/svg/logos/logo-white.svg" alt="Logo">
-        </a>
+        <!-- <a class="navbar-brand d-none d-lg-flex" href="index-2.html" aria-label="Front"> -->
+          <!-- <img class="navbar-brand-logo" src="assets/svg/logos/logo-white.svg" alt="Logo"> -->
+        <!-- </a> -->
         <!-- End White Logo -->
 
         <!-- Default Logo -->
-        <a class="navbar-brand d-flex d-lg-none" href="index-2.html" aria-label="Front">
-          <img class="navbar-brand-logo" src="assets/svg/logos/logo.svg" alt="Logo">
-        </a>
+        <!-- <a class="navbar-brand d-flex d-lg-none" href="index-2.html" aria-label="Front"> -->
+          <!-- <img class="navbar-brand-logo" src="assets/svg/logos/logo.svg" alt="Logo"> -->
+        <!-- </a> -->
         <!-- End Default Logo -->
 
         <div class="ms-auto">
           <a class="link link-sm link-secondary" href="index-2.html">
-            <i class="bi-chevron-left small ms-1"></i> Go to main
+            <!-- <i class="bi-chevron-left small ms-1"></i> Go to main -->
           </a>
         </div>
       </nav>
@@ -93,18 +93,18 @@ if(empty($password) && empty($studentid)){
             <!-- Blockquote -->
             <figure class="text-center">
               <div class="mb-4">
-                <img class="avatar avatar-xl avatar-4x3" src="assets/svg/brands/mailchimp-white.svg" alt="Logo">
+                <!-- <img class="avatar avatar-xl avatar-4x3" src="assets/svg/brands/mailchimp-white.svg" alt="Logo"> -->
               </div>
 
-              <blockquote class="blockquote blockquote-light">“ It has many landing page variations to choose from, which one is always a big advantage. ”</blockquote>
+             
 
               <figcaption class="blockquote-footer blockquote-light">
                 <div class="mb-3">
                   <img class="avatar avatar-circle" src="assets/img/160x160/img9.jpg" alt="Image Description">
                 </div>
 
-                Lida Reidy
-                <span class="blockquote-footer-source">Project Manager | Mailchimp</span>
+                  STUDENT LOGIN
+                <span class="blockquote-footer-source">Online Clearance | Manager</span>
               </figcaption>
             </figure>
             <!-- End Blockquote -->
@@ -113,17 +113,17 @@ if(empty($password) && empty($studentid)){
             <div class="position-absolute start-0 end-0 bottom-0 text-center p-5">
               <div class="row justify-content-center">
                 <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/fitbit-white.svg" alt="Logo">
+                  <!-- <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/fitbit-white.svg" alt="Logo"> -->
                 </div>
                 <!-- End Col -->
 
                 <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/business-insider-white.svg" alt="Logo">
+                  <!-- <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/business-insider-white.svg" alt="Logo"> -->
                 </div>
                 <!-- End Col -->
 
                 <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/capsule-white.svg" alt="Logo">
+                  <!-- <img class="avatar avatar-lg avatar-4x3" src="assets/svg/brands/capsule-white.svg" alt="Logo"> -->
                 </div>
                 <!-- End Col -->
               </div>
@@ -165,7 +165,7 @@ if(empty($password) && empty($studentid)){
                 <div class="d-flex justify-content-between align-items-center">
                   <label class="form-label" for="signupModalFormLoginPassword">Password</label>
 
-                  <a class="form-label-link" href="page-reset-password.html">Forgot Password?</a>
+                 
                 </div>
 
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
@@ -189,7 +189,7 @@ if(empty($password) && empty($studentid)){
               </div>
 
               <div class="text-center">
-                <p>Don't have an account yet? <a class="link" href="./signup.php">Sign up here</a></p>
+               
               </div>
             </form>
             <!-- End Form -->
