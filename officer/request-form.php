@@ -111,18 +111,21 @@
                           }
 
                         }
+
+                        
                       
                       
 
                       echo "
                       <tr>
+                      <form method='post'>
                         <th scope='row'>{$id}</th>
                         <td>{$studentfullname} </td>
                         <td> {$studentid}</td>
                         <td> {$studentdepartment}</td>
                         <td> {$statuscode}</td>
                         <td> 
-                         <form method='post'>
+                        
                             <input type='submit' value='Clear' name='clear' role='button' class='btn btn-warning'>
                             <input type='submit' value='Decline' name='decline' role='button' class='btn btn-success'>
                          </form>
@@ -130,8 +133,58 @@
                         </td>
                       </tr>
                       ";
+
+                      //update to clear student
                   
-                  
+                     $officerid = $_SESSION['officerid'];
+                     $officerdepartment = $_SESSION['officerdepartment'];
+
+                     if(isset($_SESSION['officerid']) && $officerdepartment == "computerlab"){
+                      $finalUpdate = "UPDATE students SET computerlab = 1";
+                      $statement = $conn->prepare($finalUpdate);
+                      $results = $statement->execute();
+
+                      
+                     } elseif(isset($_SESSION['officerid']) && $officerdepartment == "accountant") {
+                      $finalUpdate = "UPDATE students SET accountant = 1";
+                      $statement = $conn->prepare($finalUpdate);
+                      $results = $statement->execute();
+
+                     } elseif(isset($_SESSION['officerid']) && $officerdepartment == "librarian"){
+                        $finalUpdate = "UPDATE students SET librarian = 1";
+                        $statement = $conn->prepare($finalUpdate);
+                        $results = $statement->execute();
+
+                     } elseif((isset($_SESSION['officerid']) && $officerdepartment == "sportscoach")){
+
+                        $finalUpdate = "UPDATE students SET sportscoach = 1";
+                        $statement = $conn->prepare($finalUpdate);
+                        $results = $statement->execute();
+
+                     } elseif((isset($_SESSION['officerid']) && $officerdepartment == "laboratory")){
+
+                        $finalUpdate = "UPDATE students SET laboratory = 1";
+                        $statement = $conn->prepare($finalUpdate);
+                        $results = $statement->execute();
+
+                    } elseif((isset($_SESSION['officerid']) && $officerdepartment == "deanincharge")){
+                      
+                      $finalUpdate = "UPDATE students SET deanincharge = 1";
+                      $statement = $conn->prepare($finalUpdate);
+                      $results = $statement->execute();
+
+                    } elseif((isset($_SESSION['officerid']) && $officerdepartment == "halltutor")){
+                      
+                        $finalUpdate = "UPDATE students SET halltutor = 1";
+                        $statement = $conn->prepare($finalUpdate);
+                        $results = $statement->execute();
+                    } else {
+                      $_SESSION['message'] = "Sorry!! Something went wrong";
+                      $_SESSION['alert'] = "alert alert-danger";
+                    }
+
+                     
+
                   
                   ;?>
                

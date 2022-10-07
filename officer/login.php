@@ -28,6 +28,7 @@ if(empty($officerpassword) && empty($officerid)){
             //verify password
             if($officerpassword == $column['officerpassword']){
               $_SESSION['officerid'] = $_POST['officerid'];
+              $_SESSION['officerdepartment'] = $column['officerdepartment'];
               header("location: index.php");
               ob_end_flush();
             } else{
