@@ -104,7 +104,7 @@ if(empty($password) && empty($studentid)){
                 </div>
 
                   STUDENT LOGIN
-                <span class="blockquote-footer-source">Online Clearance | Manager</span>
+                <span class="blockquote-footer-source">Online Clearance | Student</span>
               </figcaption>
             </figure>
             <!-- End Blockquote -->

@@ -162,8 +162,7 @@
 
   <!-- Copyright -->
   <div class="w-md-85 text-lg-center mx-lg-auto">
-    <p class="text-white-50 small">&copy; Front. 2021 Htmlstream. All rights reserved.</p>
-    <p class="text-white-50 small">When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing information to help provide you with a better, faster and safer experience and for marketing purposes.</p>
+    
   </div>
   <!-- End Copyright -->
 </div>

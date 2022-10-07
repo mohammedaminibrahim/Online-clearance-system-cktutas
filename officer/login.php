@@ -103,7 +103,7 @@ if(empty($officerpassword) && empty($officerid)){
                   <img class="avatar avatar-circle" src="assets/img/160x160/img9.jpg" alt="Image Description">
                 </div>
 
-                Lida Reidy
+                OFFICER LOGIN
                 <span class="blockquote-footer-source">Online Clearance | Officer</span>
               </figcaption>
             </figure>

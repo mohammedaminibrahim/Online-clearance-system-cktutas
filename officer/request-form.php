@@ -64,20 +64,11 @@
                           $studentid = $column['studentid'];
                           $studentdepartment = $column['studentdepartment'];
                           $studentclearancestatus = $column['studentclearancestatus'];
-                        }
-                      } else{
-                        $_SESSION['message'] = "Ooopss!! Something went wrong!!";
-                        $_SESSION['alert'] = "alert alert-warning";
-                      }
 
-                      if($column['studentclearancestatus'] == 0){
-                        $statuscode = " <span class='badge badge-sm bg-warning ms-auto'>Unverified</span>";
-                      } elseif($column['studentclearancestatus'] == 1){
-                        $statuscode = " <span class='badge badge-sm bg-success ms-auto'>Verified</span>";
-                      } else{
-                        $statuscode = " <span class='badge badge-sm bg-primary ms-auto'>On hold</span>";
-                      }
+                         
 
+                          //if cleared button is clicked
+                         
                       if(isset($_POST['clear'])){
                         $var = 1;
                         $sqlUpdateStatus = "UPDATE students SET studentclearancestatus = '$var'";
@@ -94,6 +85,8 @@
                         }
                       }
 
+
+                      
                         //decline
                         if(isset($_POST['decline'])){
                           $var = 0;
@@ -112,27 +105,57 @@
 
                         }
 
-                        
-                      
-                      
 
-                      echo "
-                      <tr>
-                      <form method='post'>
-                        <th scope='row'>{$id}</th>
-                        <td>{$studentfullname} </td>
-                        <td> {$studentid}</td>
-                        <td> {$studentdepartment}</td>
-                        <td> {$statuscode}</td>
-                        <td> 
+                        if($column['studentclearancestatus'] == 0){
+                          $statuscode = " <span class='badge badge-sm bg-warning ms-auto'>Unverified</span>";
+                        } elseif($column['studentclearancestatus'] == 1){
+                          $statuscode = " <span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                        } else{
+                          $statuscode = " <span class='badge badge-sm bg-primary ms-auto'>On hold</span>";
+                        }
+
+                          echo "
+                          <tr>
+                          <form method='post'>
+                            <th scope='row'>{$id}</th>
+                            <td>{$studentfullname} </td>
+                            <td> {$studentid}</td>
+                            <td> {$studentdepartment}</td>
+                            <td> {$statuscode}</td>
+                            <td> 
+                              
+                            <a href='request-form.php?id={$id}' name='clear' role='button' class='btn btn-warning'>clear</a>
+                            <a href='request-form.php?id={$id}' name='decline' role='button' class='btn btn-success'>Decline</a>
+
+                             </form>
+                              
+                            </td>
+                          </tr>
+                          ";
+                        }
+                      } else{
+                        $_SESSION['message'] = "Ooopss!! Something went wrong!!";
+                        $_SESSION['alert'] = "alert alert-warning";
+                      }
+
+          
+                      // echo "
+                      // <tr>
+                      // <form method='post'>
+                      //   <th scope='row'>{$id}</th>
+                      //   <td>{$studentfullname} </td>
+                      //   <td> {$studentid}</td>
+                      //   <td> {$studentdepartment}</td>
+                      //   <td> {$statuscode}</td>
+                      //   <td> 
                         
-                            <input type='submit' value='Clear' name='clear' role='button' class='btn btn-warning'>
-                            <input type='submit' value='Decline' name='decline' role='button' class='btn btn-success'>
-                         </form>
+                      //       <input type='submit' value='Clear' name='clear' role='button' class='btn btn-warning'>
+                      //       <input type='submit' value='Decline' name='decline' role='button' class='btn btn-success'>
+                      //    </form>
                           
-                        </td>
-                      </tr>
-                      ";
+                      //   </td>
+                      // </tr>
+                      // ";
 
                       //update to clear student
                   
