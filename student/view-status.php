@@ -62,7 +62,7 @@
 
                 <?php
                 $studentid = $_SESSION['studentid'];
-                    $sqlStatus = "SELECT * FROM clearance WHERE studentsid = :studentid";
+                    $sqlStatus = "SELECT * FROM students WHERE studentid = :studentid";
                     $statement = $conn->prepare($sqlStatus);
                     $results = $statement->execute([
                         ':studentid' => $studentid
@@ -72,7 +72,24 @@
                     if($results){
                         foreach($columns as $column){
                             $status = $column['status'];
+                            $computerlab = $column['computerlab'];
+                            $accountant = $column['accountant'];
+                            $librarian = $column['librarian'];
+                            $sportscoach = $column['sportscoach'];
+                            $laboratory = $column['laboratory'];
+                            $deanincharge = $column['deanincharge'];
+                            $halltutor = $column['halltutor'];
 
+                            if($computerlab == 1 && $accountant == 1 && $librarian == 1 && $sportscoach == 1
+                            && $laboratory == 1 && $deanincharge == 1 && $halltutor == 1){
+                              $sqlUpdate = "UPDATE students SET status = 1";
+                            $status = 1;
+                            } else{
+                              $sqlUpdate = "UPDATE students SET status = 0";
+                              $status = 0;
+                            }
+
+                            
                         }
 
                         if($status == 0){
