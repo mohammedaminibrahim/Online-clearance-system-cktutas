@@ -48,7 +48,7 @@
   <li class="nav-title"><?= $officerid;?> <span class="badge badge-sm bg-success ms-auto">NEW</span></li>
     <li class="nav-item">
     <div class="rounded-circle">
-      <img src="../assets/img/avatars/1.jpg" style="margin-left: 60px;" class="avatar" alt="" srcset="">
+      <img src="././assets/img/officer.jpg" style="margin-left: 60px;" class="avatar" alt="" srcset="">
     </div>
     <div class="container">
     <p style="margin-left: 30px;" class="text-light"><?= $fullname;?> </p>

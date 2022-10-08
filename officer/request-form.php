@@ -51,7 +51,7 @@
                 <tbody>
                   <?php
 
-                      $sqlSelectStudentsForOfficer = "SELECT * FROM students";
+                      $sqlSelectStudentsForOfficer = "SELECT * FROM students WHERE status = 0";
                       $statement = $conn->prepare($sqlSelectStudentsForOfficer);
                       $results = $statement->execute();
                       $rows = $statement->rowCount();
@@ -60,6 +60,7 @@
                       if($results){
                         foreach($columns as $column){
                           $id = $column['id'];
+                          $status = $column['status'];
                           $studentfullname = $column['studentfullname'];
                           $studentid = $column['studentid'];
                           $studentdepartment = $column['studentdepartment'];
@@ -71,7 +72,7 @@
                          
                       if(isset($_POST['clear'])){
                         $var = 1;
-                        $sqlUpdateStatus = "UPDATE students SET studentclearancestatus = '$var'";
+                        $sqlUpdateStatus = "UPDATE students SET status = '$var'";
                         $statement = $conn->prepare($sqlUpdateStatus);
                         $results = $statement->execute();
 
@@ -90,7 +91,7 @@
                         //decline
                         if(isset($_POST['decline'])){
                           $var = 0;
-                          $sqlUpdateStatus = "UPDATE students SET studentclearancestatus = '$var'";
+                          $sqlUpdateStatus = "UPDATE students SET status = '$var'";
                           $statement = $conn->prepare($sqlUpdateStatus);
                           $results = $statement->execute();
   
@@ -106,9 +107,9 @@
                         }
 
 
-                        if($column['studentclearancestatus'] == 0){
+                        if($column['status'] == 0){
                           $statuscode = " <span class='badge badge-sm bg-warning ms-auto'>Unverified</span>";
-                        } elseif($column['studentclearancestatus'] == 1){
+                        } elseif($column['status'] == 1){
                           $statuscode = " <span class='badge badge-sm bg-success ms-auto'>Verified</span>";
                         } else{
                           $statuscode = " <span class='badge badge-sm bg-primary ms-auto'>On hold</span>";
@@ -123,9 +124,13 @@
                             <td> {$studentdepartment}</td>
                             <td> {$statuscode}</td>
                             <td> 
-                              
-                            <a href='request-form.php?id={$id}' name='clear' role='button' class='btn btn-warning'>clear</a>
-                            <a href='request-form.php?id={$id}' name='decline' role='button' class='btn btn-success'>Decline</a>
+                              <form method='post'>
+                              <input type='submit' name='clear' class='btn btn-primary' role='button' value='clear'>
+                              </form>
+                              <form metho='post'>
+                              <input type='submit' name='decline' class='btn btn-warning' role='button' value='Decline'>
+                              </form>
+                          
 
                              </form>
                               

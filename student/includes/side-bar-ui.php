@@ -37,10 +37,10 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
 <div class="sidebar-brand d-none d-md-flex">
   <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-    <use xlink:href="assets/brand/coreui.svg#full"></use>
+    <!-- <use xlink:href="assets/brand/coreui.svg#full"></use> -->
   </svg>
   <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-    <use xlink:href="assets/brand/coreui.svg#signet"></use>
+    <!-- <use xlink:href="assets/brand/coreui.svg#signet"></use> -->
   </svg>
 </div>
 <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
@@ -48,7 +48,7 @@
   <li class="nav-title"><?= $studentid;?> <span class="badge badge-sm bg-success ms-auto">NEW</span></li>
     <li class="nav-item">
     <div class="rounded-circle">
-      <img src="../assets/img/avatars/1.jpg" style="margin-left: 60px;" class="avatar" alt="" srcset="">
+      <img src="././assets/img/admin.jpg" style="margin-left: 60px;" class="avatar" alt="" srcset="">
     </div>
     <div class="container">
     <p style="margin-left: 30px;" class="text-light"><?= $fullname;?> </p>
