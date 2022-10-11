@@ -16,12 +16,11 @@
       $sportscoach = sterilize($_POST['sportscoach']);
       $halltutor = sterilize($_POST['halltutor']);
       $deanincharge = sterilize($_POST['deanincharge']);
+      $reportstatus = 1;
 
       if(!empty($accountant) && !empty($librarian) && !empty($computerlab) && 
       !empty($faslab) && !empty($sportscoach) && !empty($halltutor) && !empty($deanincharge)){
-        $sqlInsertClearanceForm = "INSERT INTO clearance(studentsid, accountant, librarian, computerlab, faslab,
-        halltutor, deanincharge, sportscoach) 
-        VALUES('$studentid','$accountant','$librarian','$computerlab','$faslab','$halltutor',' $deanincharge','$sportscoach')";
+        $sqlInsertClearanceForm = "UPDATE students SET reportstatus = '$reportstatus' WHERE studentid = '$studentid'";
         $statement = $conn->prepare($sqlInsertClearanceForm);
         $results = $statement->execute();
 
@@ -184,7 +183,26 @@
                     </td>
                   </tr>
 
-                  <input type="submit" name="sendresquest" value="Send Request" class="btn btn-primary">
+                  <?php
+                    $disableVar = "";
+                    $sqlGetRequest = "SELECT * FROM students WHERE studentid = '$studentid'";
+                    $statement = $conn->prepare($sqlGetRequest);
+                    $results = $statement->execute();
+                    $rows = $statement->rowCount();
+                    $columns = $statement->fetchAll();
+
+                    foreach($columns as $column){
+                      $reportstatus = $column['reportstatus'];
+                      if($reportstatus == 1){
+                        $disableVar = "disabled";
+                        $btnName = "Request Sent Already";
+                      } elseif($reportstatus == 0){
+                        $disableVar = "";
+                        $btnName = "Send Request";
+                      }
+                    }
+                  ;?>
+                  <input type="submit" name="sendresquest" value="<?=$btnName;?>" class="btn btn-primary" <?=$disableVar;?>>
                  </form>
                  
                 </tbody>

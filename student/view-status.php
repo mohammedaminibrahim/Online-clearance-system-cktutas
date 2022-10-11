@@ -120,6 +120,70 @@
                 </p>
                 </div>
 
+
+
+                <div class="tab-content rounded-bottom">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-681">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Computer Lab</th>
+                          <th scope="col">Accountant</th>
+                          <th scope="col">Librarian</th>
+                          <th scope="col">Sports Coach</th>
+                          <th scope="col">Laboratory</th>
+                          <th scope="col">Dean In Charge</th>
+                          <th scope="col">Hall Tutor</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                            $slqGetAllOffices = "SELECT * FROM students WHERE studentid = '$studentid'";
+                            $statement = $conn->prepare($slqGetAllOffices);
+                            $results = $statement->execute();
+                            $columns = $statement->fetchAll();
+                            $rows = $statement->rowCount();
+                            if($results){
+                              foreach($columns as $column){
+                                $id = $column['studentid'];
+                                $computerlab =$column['computerlab'];
+                                $accountant =$column['accountant'];
+                                $librarian =$column['librarian'];
+                                $sportscoach =$column['sportscoach'];
+                                $laboratory =$column['laboratory'];
+                                $deanincharge =$column['deanincharge'];
+                                $halltutor =$column['halltutor'];
+
+                                echo "
+                                <tr>
+                                <th scope='row'>{$id}</th>
+                                <td>{$accountant}</td>
+                                <td>{$accountant}</td>
+                                <td>{$accountant}</td>
+                                <td>{$accountant}</td>
+                                <td>{$accountant}</td>
+                                <td>{$accountant}</td>
+                                <td>{$accountant}</td>
+                               
+                              </tr>
+                                
+                                ";
+                              }
+                            } else{
+                              $_SESSION['message'] = "Something went wrong";
+                              $_SESSION['alert'] = "alert alert-warning";
+                            }
+                        
+                        
+                        ;?>
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                    
                     
 
 
