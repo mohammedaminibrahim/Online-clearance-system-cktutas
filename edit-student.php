@@ -34,7 +34,7 @@
                 $gender = $_POST['gender'];
 
                 $sqlUpdate = "UPDATE students SET studentid = '$studentid', studentfullname = '$studentfullname', studentdepartment = '$studentdepartment',
-            studentprogramme = '$studentprogramme', date = '$date', gender = '$gender'";
+            studentprogramme = '$studentprogramme', date = '$date', gender = '$gender' WHERE id = '$id'";
             $statement = $conn->prepare($sqlUpdate);
             $results = $statement->execute();
 

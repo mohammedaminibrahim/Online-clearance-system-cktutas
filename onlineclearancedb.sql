@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2022 at 02:36 AM
+-- Generation Time: Oct 08, 2022 at 02:14 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.4
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `onlineclearancedb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clearance`
+--
+
+CREATE TABLE `clearance` (
+  `id` int(11) NOT NULL,
+  `studentsid` varchar(255) NOT NULL,
+  `studentdepartment` varchar(255) NOT NULL,
+  `officerid` int(11) NOT NULL,
+  `officerfullname` varchar(255) NOT NULL,
+  `accountant` int(11) NOT NULL,
+  `librarian` int(11) NOT NULL,
+  `computerlab` int(11) NOT NULL,
+  `faslab` int(11) NOT NULL,
+  `halltutor` int(11) NOT NULL,
+  `deanincharge` int(11) NOT NULL,
+  `sportscoach` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `clearance`
+--
+
+INSERT INTO `clearance` (`id`, `studentsid`, `studentdepartment`, `officerid`, `officerfullname`, `accountant`, `librarian`, `computerlab`, `faslab`, `halltutor`, `deanincharge`, `sportscoach`, `status`) VALUES
+(2, 'FMS/0075/17', '', 0, '', 1, 1, 1, 1, 1, 1, 1, 0),
+(4, 'FMS/0034/18', '', 0, '', 1, 1, 1, 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -45,6 +75,26 @@ INSERT INTO `department` (`id`, `departmentname`, `faculty`, `datecreated`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fees`
+--
+
+CREATE TABLE `fees` (
+  `id` int(11) NOT NULL,
+  `feesamount` double NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `createdat` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fees`
+--
+
+INSERT INTO `fees` (`id`, `feesamount`, `department`, `createdat`) VALUES
+(2, 500, 'Computer Science', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `officers`
 --
 
@@ -61,9 +111,27 @@ CREATE TABLE `officers` (
 --
 
 INSERT INTO `officers` (`id`, `officerid`, `officerpassword`, `officerfullname`, `officerdepartment`) VALUES
-(1, '12345', '123456', 'Mansah Musah', ''),
-(2, '123455', '123456', 'Mansah Musah1', ''),
-(3, '12345', '123456', 'Mansah Musah', '');
+(1, '12345', '12345678', 'Mansah Musah', 'computerlab'),
+(4, '123456', '12345678', 'Miss Rakiba', 'accountant'),
+(5, '1234567', '12345678', 'Miss Rakiba', 'librarian'),
+(6, '666111', '12345678', 'Miss Rakiba', 'laboratory'),
+(7, '111666', '12345678', 'Miss Rakiba', 'deanincharge'),
+(8, '111667', '12345678', 'Miss Rakiba', 'sportscoach'),
+(9, '111668', '12345678', 'Miss Rakiba', 'halltutor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `studentfees`
+--
+
+CREATE TABLE `studentfees` (
+  `id` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `studentfullname` varchar(255) NOT NULL,
+  `feesid` int(11) NOT NULL,
+  `createdat` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -80,16 +148,27 @@ CREATE TABLE `students` (
   `date` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `profilepic` varchar(255) NOT NULL
+  `studentclearancestatus` varchar(11) NOT NULL,
+  `profilepic` varchar(255) NOT NULL,
+  `computerlab` int(11) NOT NULL,
+  `accountant` int(11) NOT NULL,
+  `librarian` int(11) NOT NULL,
+  `sportscoach` int(11) NOT NULL,
+  `laboratory` int(11) NOT NULL,
+  `deanincharge` int(11) NOT NULL,
+  `halltutor` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `studentid`, `studentfullname`, `studentdepartment`, `studentprogramme`, `date`, `gender`, `password`, `profilepic`) VALUES
-(4, 'FMS/0075/17', ' Ahmed Issah', 'Biochem', 'Computer Science', '2010-09-09', 'male', '123456', ''),
-(5, 'FMS/0075/17', ' Ahmed Issah', 'Biochem', 'Computer Science', '2010-09-09', 'male', '123456', '');
+INSERT INTO `students` (`id`, `studentid`, `studentfullname`, `studentdepartment`, `studentprogramme`, `date`, `gender`, `password`, `studentclearancestatus`, `profilepic`, `computerlab`, `accountant`, `librarian`, `sportscoach`, `laboratory`, `deanincharge`, `halltutor`, `status`) VALUES
+(4, 'FMS/0075/17', ' Ahmed Issah', 'Biochem', 'Computer Science', '2010-09-09', 'male', '12345678', '1', '', 1, 1, 1, 1, 1, 1, 1, 1),
+(6, 'FMS/0034/18', ' Rakiba Sulemana', 'Computer Science', 'Computer Science', '2022-10-07', 'female', '12345678', '1', '', 1, 1, 1, 1, 1, 1, 1, 1),
+(7, 'FMS/0034/19', ' Rakiba Sulemana', 'Computer Science', 'Computer Science', '2022-10-07', 'female', '12345678', '1', '', 1, 1, 1, 1, 1, 1, 1, 1),
+(8, 'FMS/0034/19', ' Rakiba Sulemana', 'Computer Science', 'Computer Science', '2022-10-07', 'female', '12345678', '1', '', 1, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -119,9 +198,22 @@ INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `joinedat`) VALUES
 --
 
 --
+-- Indexes for table `clearance`
+--
+ALTER TABLE `clearance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `officerid` (`officerid`);
+
+--
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fees`
+--
+ALTER TABLE `fees`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -129,6 +221,13 @@ ALTER TABLE `department`
 --
 ALTER TABLE `officers`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `studentfees`
+--
+ALTER TABLE `studentfees`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `feesid` (`feesid`);
 
 --
 -- Indexes for table `students`
@@ -147,28 +246,56 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `clearance`
+--
+ALTER TABLE `clearance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `fees`
+--
+ALTER TABLE `fees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `officers`
 --
 ALTER TABLE `officers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `studentfees`
+--
+ALTER TABLE `studentfees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `studentfees`
+--
+ALTER TABLE `studentfees`
+  ADD CONSTRAINT `studentfees_ibfk_1` FOREIGN KEY (`feesid`) REFERENCES `fees` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
