@@ -127,7 +127,7 @@
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
+                          <th scope="col">Student ID</th>
                           <th scope="col">Computer Lab</th>
                           <th scope="col">Accountant</th>
                           <th scope="col">Librarian</th>
@@ -156,16 +156,34 @@
                                 $deanincharge =$column['deanincharge'];
                                 $halltutor =$column['halltutor'];
 
+                                if($computerlab == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } elseif($accountant == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } elseif($librarian == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } elseif($sportscoach == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } elseif($laboratory == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } elseif($deanincharge == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } elseif($halltutor == 1){
+                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
+                                } else{
+                                  $requestStatus = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                                }
+
                                 echo "
                                 <tr>
                                 <th scope='row'>{$id}</th>
-                                <td>{$accountant}</td>
-                                <td>{$accountant}</td>
-                                <td>{$accountant}</td>
-                                <td>{$accountant}</td>
-                                <td>{$accountant}</td>
-                                <td>{$accountant}</td>
-                                <td>{$accountant}</td>
+                                <td>{$requestStatus}</td>
+                                <td>{$requestStatus}</td>
+                                <td>{$requestStatus}</td>
+                                <td>{$requestStatus}</td>
+                                <td>{$requestStatus}</td>
+                                <td>{$requestStatus}</td>
+                                <td>{$requestStatus}</td>
                                
                               </tr>
                                 

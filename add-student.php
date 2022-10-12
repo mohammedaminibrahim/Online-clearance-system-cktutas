@@ -14,7 +14,7 @@
         $studentprogramme = sterilize($_POST['studentprogramme']);
         $date = sterilize($_POST['date']);
         $gender = sterilize($_POST['gender']);
-        $password = "123456";
+        $password = "12345678";
 
         if(!empty($studentid) && !empty($studentfullname) && !empty($studentdepartment) &&
          !empty($studentprogramme) && !empty($date) && !empty($gender) && !empty($password)){
