@@ -64,7 +64,7 @@
   <li class="nav-item"><a class="nav-link" href="././view-status.php">
       <svg class="nav-icon">
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-      </svg> Clear Students</a></li>
+      </svg> Cleared Students</a></li>
 
       <!-- <li class="nav-item"><a class="nav-link" href="././student-fees.php">
       <svg class="nav-icon">

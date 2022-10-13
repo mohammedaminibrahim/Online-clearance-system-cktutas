@@ -148,7 +148,7 @@
                             if($results){
                               foreach($columns as $column){
                                 $id = $column['studentid'];
-                                $computerlab =$column['computerlab'];
+                                $computerlabVar =$column['computerlab'];
                                 $accountant =$column['accountant'];
                                 $librarian =$column['librarian'];
                                 $sportscoach =$column['sportscoach'];
@@ -156,38 +156,7 @@
                                 $deanincharge =$column['deanincharge'];
                                 $halltutor =$column['halltutor'];
 
-                                if($computerlab == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } elseif($accountant == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } elseif($librarian == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } elseif($sportscoach == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } elseif($laboratory == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } elseif($deanincharge == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } elseif($halltutor == 1){
-                                  $requestStatus = "<span class='badge badge-sm bg-success ms-auto'>Cleared</span>";
-                                } else{
-                                  $requestStatus = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
-                                }
-
-                                echo "
-                                <tr>
-                                <th scope='row'>{$id}</th>
-                                <td>{$requestStatus}</td>
-                                <td>{$requestStatus}</td>
-                                <td>{$requestStatus}</td>
-                                <td>{$requestStatus}</td>
-                                <td>{$requestStatus}</td>
-                                <td>{$requestStatus}</td>
-                                <td>{$requestStatus}</td>
                                
-                              </tr>
-                                
-                                ";
                               }
                             } else{
                               $_SESSION['message'] = "Something went wrong";
@@ -196,7 +165,67 @@
                         
                         
                         ;?>
-                       
+                            <?php
+                            
+                            $requestStatus = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                            $requestStatusAcc = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                            $requestStatusLib = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                            $requestStatusCoach = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                            $requestStatusLab = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusDean = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusHall = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                            if($column['computerlab'] == 1){
+                              $requestStatusCom = "<span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                            } 
+                            
+                            if($column['accountant'] == 1){
+                              $requestStatusAcc = "<span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                            } 
+                            
+                            if($column['librarian'] == 1){
+                              $requestStatusLib = "<span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                            } 
+                            
+                            if($column['sportscoach'] == 1){
+                              $requestStatusCoach = "<span class='badge badge-sm bg-success ms-auto'>Verifed</span>";
+                            }
+                            
+                            if($column['laboratory'] == 1) {
+                              $requestStatusLab = "<span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                            }
+                            
+                            if($column['deanincharge'] == 1) {
+                              $requestStatusDean = "<span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                            } 
+                            
+                            if($column['halltutor'] == 1){
+                              $requestStatusHall = "<span class='badge badge-sm bg-success ms-auto'>Verified</span>";
+                            }
+                            else {
+                              $requestStatusCom = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>"; 
+                              $requestStatusAcc = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusLib = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusCoach = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusLab = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusDean = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                              $requestStatusHall = "<span class='badge badge-sm bg-warning ms-auto'>Pending</span>";
+                            }
+                            ;?>
+
+                               
+                                <tr>
+                                <th scope='row'><?= $studentid;?></th>
+                                <td><?=$requestStatusCom;?></td>
+                                <td><?= $requestStatusAcc ;?></td>
+                                <td><?= $requestStatusLib ;?></td>
+                                <td><?= $requestStatusCoach ;?></td>
+                                <td><?= $requestStatusLab ;?></td>
+                                <td><?= $requestStatusDean ;?></td>
+                                <td><?= $requestStatusHall ;?></td>
+                               
+                              </tr>
+                                
+                            
                       </tbody>
                     </table>
                   </div>

@@ -47,7 +47,7 @@
 <?php require_once("./includes/side-bar-ui.php");?>
     <?php require_once("./includes/header-ui.php");?>
      <div class="container">
-        <h4>Request Clearance Status</h4>
+        <h4>Cleared Students</h4>
         
 
                     
@@ -59,51 +59,250 @@
         <div class="container">
             
         </div>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Status</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
 
                 <?php
-                $studentid = $_SESSION['studentid'];
-                    $sqlStatus = "SELECT * FROM clearance WHERE studentsid = :studentid";
-                    $statement = $conn->prepare($sqlStatus);
-                    $results = $statement->execute([
-                        ':studentid' => $studentid
-                    ]);
-                    $columns = $statement->fetchAll();
+                $officerid = $_SESSION['officerid'];
+                $officerdepartment =  $_SESSION['officerdepartment'];
 
-                    if($results){
-                        foreach($columns as $column){
-                            $status = $column['status'];
+                $sqlSelectStudentsPerOfficerDepartment = "SELECT * FROM students";
+                $statement = $conn->prepare($sqlSelectStudentsPerOfficerDepartment);
+                $results = $statement->execute();
+                $rows = $statement->rowCount();
+                $columns = $statement->fetchAll();
 
-                        }
+                foreach($columns as $column){
+                  $computerlab = $column['computerlab'];
+                  $accountant = $column['accountant'];
+                  $librarian = $column['librarian'];
+                  $computerlab = $column['computerlab'];
+                  $laboratory = $column['laboratory'];
+                  $deanincharge = $column['deanincharge'];
+                  $halltutor = $column['halltutor'];
+                }
 
-                        if($status == 0){
-                            $statusCode = "Not Verified";
-                            $statusalert = "alert alert-danger";
-                            $statutitle = "Pending";
-                            $statusmessage = "Please hold on for a while! Clearance in progress!!";
-                        } elseif($status == 1){
-                            $statusCode = "Verified";
-                            $statutitle = "<strong>"."Congratulation!!"."<strong>". "You have successfully been cleared!";
-                            $statusalert = "alert alert-success";
-                            $statusmessage = "Take a moment and savor your reward after all of those late nights of studying, 
-                            the fun you missed out on, and lack of sleep. Congratulations! on your Graduation!!";
-                        }
-                    } 
+                if($officerdepartment == 'computerlab'){
+                  $sql = "SELECT * FROM students WHERE computerlab = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
 
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $studentfullname = $column['studentfullname'];
+
+                      echo "
+                      <tr>
+                        <th>
+                        {$studentid}
+                        </th>
+                        <th>
+                        {$studentfullname}
+                        </th>
+                        <th>
+                      '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                        </th>
+                        </tr>
+                      ";
+                    }
+                  }
+
+                }
+
+                if($officerdepartment == 'accountant'){
+                  $sql = "SELECT * FROM students WHERE accountant = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
+
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $status = $column['computerlab'];
+                      echo "
+                      <tr>
+                      <th>
+                      {$studentid}
+                      </th>
+                      <th>
+                      {$studentfullname}
+                      </th>
+                      <th>
+                    '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                      </th>
+                      </tr>
+                    ";
+                    }
+                  }
+                }
+
+                if($officerdepartment == 'librarian'){
+                  $sql = "SELECT * FROM students WHERE computerlab = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
+
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $status = $column['computerlab'];
+
+                      echo "
+                      <tr>
+                        <th>
+                        {$studentid}
+                        </th>
+                        <th>
+                        {$studentfullname}
+                        </th>
+                        <th>
+                      '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                        </th>
+                        </tr>
+                      ";
+                    }
+                  }
+
+                } 
+
+                if($officerdepartment == 'sportscoach'){
+                  $sql = "SELECT * FROM students WHERE sportscoach = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
+
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $status = $column['computerlab'];
+
+                      echo "
+                      <tr>
+                      <th>
+                      {$studentid}
+                      </th>
+                      <th>
+                      {$studentfullname}
+                      </th>
+                      <th>
+                    '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                      </th>
+                      </tr>
+                    ";
+                    }
+                  }
+                }
+
+
+                if($officerdepartment == 'laboratory'){
+                  $sql = "SELECT * FROM students WHERE laboratory = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
+
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $status = $column['computerlab'];
+
+                      echo "
+                      <tr>
+                      <th>
+                      {$studentid}
+                      </th>
+                      <th>
+                      {$studentfullname}
+                      </th>
+                      <th>
+                    '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                      </th>
+                      </tr>
+                    ";
+                    }
+                  }
+                }
+
+                if($officerdepartment == 'deanincharge'){
+                  $sql = "SELECT * FROM students WHERE deanincharge = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
+
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $status = $column['computerlab'];
+
+                      echo "
+                      <tr>
+                      <th>
+                      {$studentid}
+                      </th>
+                      <th>
+                      {$studentfullname}
+                      </th>
+                      <th>
+                    '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                      </th>
+                      </tr>
+                    ";
+                    }
+                  }
+                }
+
+                if($officerdepartment == 'halltutor'){
+                  $sql = "SELECT * FROM students WHERE halltutor = 1 AND status = 1";
+                  $statement = $conn->prepare($sql);
+                  $results = $statement->execute();
+                  $rows = $statement->rowCount();
+                  $columns = $statement->fetchAll();
+
+                  if($results){
+                    foreach($columns as $column){
+                      $studentid = $column['studentid'];
+                      $status = $column['computerlab'];
+
+                      echo "
+                      <tr>
+                        <th>
+                        {$studentid}
+                        </th>
+                        <th>
+                        {$studentfullname}
+                        </th>
+                        <th>
+                      '<span class='badge badge-sm bg-success ms-auto'>Verified</span>'
+                        </th>
+                        </tr>
+                      ";
+                    }
+                  }
+                }
                 
                 
                 ;?>
 
 
-                <div class="<?= $statusalert;?>" role="alert">
-                <h4 class="alert-heading"><?php echo $statusCode;?></h4>
-                <p><?php echo $statutitle;?></p>
-                <hr>
-                <p class="mb-0">
-                <?php echo $statusmessage;?>
-                </p>
-                </div>
+                        
 
-                    
+              </tbody>
+              </table>
 
 
                   </div>
@@ -113,5 +312,5 @@
      </div>
           </div>
     </div>
-     <?php require_once("./includes/footer-ui.php");?>
+     <?php //require_once("./includes/footer-ui.php");?>
      <?php require_once("./includes/bottom-files.php");?>
